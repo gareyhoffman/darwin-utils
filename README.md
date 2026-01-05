@@ -2,6 +2,26 @@
 
 macOS terminal utilities.
 
+## Installation
+
+```bash
+git clone https://github.com/gareyhoffman/darwin-utils.git
+cd darwin-utils
+```
+
+Optionally, add the scripts to your PATH:
+
+```bash
+export PATH="$PATH:$(pwd)/scripts"
+```
+
+Or symlink individual scripts:
+
+```bash
+ln -s "$(pwd)/scripts/change_ghostty_theme.py" /usr/local/bin/change-ghostty-theme
+ln -s "$(pwd)/scripts/change_terminal_theme.py" /usr/local/bin/change-terminal-theme
+```
+
 ## Scripts
 
 ### change_terminal_theme.py
