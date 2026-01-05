@@ -24,7 +24,6 @@ from __future__ import annotations
 import argparse
 import os
 import re
-import signal
 import subprocess
 import sys
 from pathlib import Path
@@ -105,18 +104,11 @@ def apply_theme(theme: str) -> None:
     config_path.write_text(content)
 
     # Signal Ghostty to reload config
-    result = subprocess.run(
-        ["pgrep", "-x", "ghostty"],
+    subprocess.run(
+        ["killall", "-SIGUSR2", "ghostty"],
         check=False,
-        text=True,
         capture_output=True,
     )
-    if result.returncode == 0:
-        for pid in result.stdout.strip().splitlines():
-            try:
-                os.kill(int(pid), signal.SIGUSR2)
-            except (ProcessLookupError, ValueError):
-                pass
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
